@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\UserCarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/client/{clientId}', [ClientController::class, 'getClientInfo']);
+Route::post('/assign-car', [UserCarController::class, 'assignCar']);
+Route::post('/check-user-car', [UserCarController::class, 'checkIfUserIsUsingCar']);
