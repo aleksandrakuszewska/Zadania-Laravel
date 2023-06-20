@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     protected $table = 'clients';
-
+    protected $fillable = ['name'];
     public function employee()
     {
         return $this->hasOne(Employee::class, 'id', 'employee_id');

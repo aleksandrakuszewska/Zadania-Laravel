@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['brand', 'model'];
     /**
      * Get the users associated with the car.
      */

@@ -10,7 +10,9 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('employee_id');
+        
+            $table->unsignedBigInteger('employee_id')->default(1);
+
             $table->timestamps();
 
             // if (Schema::hasTable('employees')) {
