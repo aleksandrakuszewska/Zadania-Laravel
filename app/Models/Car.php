@@ -15,5 +15,9 @@ class Car extends Model
     {
         return $this->belongsToMany(User::class, 'user_car', 'car_id', 'user_id');
     }
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }
 ?>
