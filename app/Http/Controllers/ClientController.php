@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     public function getClientInfo($clientId)
     {
-        $client = Client::with('employee', 'orders')->find($clientId);
+        $client = User::with('employee', 'orders')->find($clientId);
 
         if (!$client) {
             return response()->json(['message' => 'Klient nie został znaleziony.'], 404);
@@ -19,9 +19,10 @@ class ClientController extends Controller
     }
     public function store(Request $request)
     {
-        $client = Client::create([
+        $client = User::create([
             'name' => $request->input('name'),
-            // 'email' => $request->input('email')
+            'email' => $request->input('email'),
+            // 'password' => $request->input('password')
         ]);
 
         return response()->json([
@@ -31,7 +32,7 @@ class ClientController extends Controller
 
     public function show($id)
     {
-        $client = Client::findOrFail($id);
+        $client = User::findOrFail($id);
 
         return response()->json([
             'data' => $client
@@ -40,9 +41,10 @@ class ClientController extends Controller
 
     public function update(Request $request, $id)
     {
-        $client = Client::findOrFail($id);
+        $client = User::findOrFail($id);
         $client->name = $request->input('name');
-        // $client->email = $request->input('email');
+        $client->email = $request->input('email');
+        // $client->password = $request->input('password');
         $client->save();
 
         return response()->json([
@@ -52,7 +54,7 @@ class ClientController extends Controller
 
     public function destroy($id)
     {
-        $client = Client::findOrFail($id);
+        $client = User::findOrFail($id);
         $client->delete();
 
         return response()->json(null, 204);

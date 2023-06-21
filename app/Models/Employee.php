@@ -9,7 +9,7 @@ class Employee extends Model
     protected $fillable = ['name'];
     public function client()
     {
-        return $this->hasOne(Client::class, 'employee_id', 'id');
+        return $this->hasOne(User::class, 'employee_id', 'id');
     }
     
 }

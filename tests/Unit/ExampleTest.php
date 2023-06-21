@@ -15,6 +15,7 @@ class ExampleTest extends TestCase
      */
     public function testVehicleCRUD()
     {
+        
         // Tworzenie nowego pojazdu
         $response = $this->post('/api/vehicles', [
             'brand' => 'Test Brand',
@@ -62,13 +63,16 @@ class ExampleTest extends TestCase
     {
         $employeeResponse = $this->post('/api/employees', [
             'name' => 'Test Employee',
+           
         ]);
         $employeeResponse->assertStatus(201);
         $employeeId = $employeeResponse->json('data.id');
    // Tworzenie nowego klienta z poprawnym employee_id
     $response = $this->post('/api/clients', [
         'name' => 'Test Customer',
+        'email' => 'test@example.com',
         'employee_id' => $employeeId,
+        // 'password' => 'Password123',
     ]);
     $response->assertStatus(201);
 
@@ -80,21 +84,23 @@ class ExampleTest extends TestCase
             'data' => [
                 'id' => $clientId,
                 'name' => 'Test Customer',
-                // 'email' => 'test@example.com',
+                'email' => 'test@example.com',
+                // 'password' => 'Password123',
             ]
         ]);
 
         // Edycja klienta
         $response = $this->put("/api/clients/{$clientId}", [
             'name' => 'Updated Customer',
-            // 'email' => 'updated@example.com',
+            'email' => 'updated@example.com',
         ]);
         $response->assertStatus(200);
         $response->assertJson([
             'data' => [
                 'id' => $clientId,
                 'name' => 'Updated Customer',
-                // 'email' => 'updated@example.com',
+                'email' => 'updated@example.com',
+                // 'password' => 'Password12',
             ]
         ]);
 

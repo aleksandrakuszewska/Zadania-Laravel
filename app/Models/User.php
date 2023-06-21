@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        // 'password',
     ];
 
     /**
@@ -49,5 +49,15 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class);
+    }
+    public function employee()
+    {
+        return $this->hasOne(Employee::class, 'id', 'employee_id');
+    }
+    
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

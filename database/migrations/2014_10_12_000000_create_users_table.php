@@ -16,11 +16,18 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            // $table->string('password');
             $table->boolean('is_admin')->default(false);
             $table->string('admin_role')->nullable();
             $table->rememberToken();
+                    
+            $table->unsignedBigInteger('employee_id')->default(1);
+
             $table->timestamps();
+
+            // if (Schema::hasTable('employees')) {
+                $table->foreign('employee_id')->references('id')->on('employees');
+            // }
         });
     }
 
