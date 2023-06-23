@@ -32,9 +32,13 @@ Route::put('/vehicles/{id}', [VehicleController::class, 'update']);
 Route::delete('/vehicles/{id}', [VehicleController::class, 'destroy']);
 
 Route::post('/clients', [ClientController::class, 'store']);
+Route::get('/clients/all', [ClientController::class,'getAllClients']);//
 Route::get('/clients/{id}', [ClientController::class, 'show']);
 Route::put('/clients/{id}', [ClientController::class, 'update']);
 Route::delete('/clients/{id}', [ClientController::class, 'destroy']);
+Route::get('/clients/{id}/info', [ClientController::class, 'getClientInfo']); // Dodane wywołanie getInfo
+
+
 
 Route::post('/employees', [EmployeeController::class, 'store']);
 Route::get('/employees/{id}', [EmployeeController::class, 'show']);
